@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+    RewriteBase /prototypeshelter/
+
+    RewriteRule ^assets/ - [L]
+    RewriteRule ^inc/ - [L]
+    RewriteRule ^uploads/ - [L]
+    RewriteRule ^dashboard\.php$ - [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    RewriteRule ^(.*)-v(.*)$ prototype.php?prototype=$1&version=$2 [L,QSA]
+    RewriteRule ^(.*)$ prototype.php?prototype=$1&version=0 [L,QSA]
+</IfModule>
